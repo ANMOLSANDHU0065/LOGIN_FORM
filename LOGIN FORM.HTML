@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Registration Form</title>
+
+  <STYLE>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #00b4db, #0083b0);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  position: absolute;
+  top: 20px;
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+.form-box {
+  background-color: #ffffffdd;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form {
+  display: none;
+  flex-direction: column;
+}
+
+.form.active {
+  display: flex;
+}
+
+.form h2 {
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.form input {
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form input:focus {
+  border-color: #00b4db;
+}
+
+.form button {
+  background-color: #0083b0;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.form button:hover {
+  background-color: #005f73;
+}
+
+.switch-link {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.switch-link a {
+  color: #0083b0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.footer {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+}
+
+
+  </STYLE>
+</head>
+<body>
+
+  <h1 class="heading">REGISTRATION & LOGIN FORM</h1>
+
+  <div class="form-container">
+    <div class="form-box" id="formBox">
+
+      <form id="registerForm" class="form active" onsubmit="return validateRegisterForm()">
+        <h2>Register</h2>
+        <input type="text" id="firstName" placeholder="First Name" required />
+        <input type="text" id="lastName" placeholder="Last Name" required />
+        <input type="tel" id="phone" placeholder="Phone No." required />
+        <input type="email" id="email" placeholder="Email ID" required />
+        <button type="submit">Submit</button>
+        <p class="switch-link">Already have an account? <a onclick="toggleForm('login')">Login</a></p>
+      </form>
+
+      <form id="loginForm" class="form" onsubmit="return validateLoginForm()">
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Email ID" required />
+        <input type="tel" id="loginPhone" placeholder="Phone No." required />
+        <button type="submit">Login</button>
+        <p class="switch-link">Don't have an account? <a onclick="toggleForm('register')">Register</a></p>
+      </form>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Credited by Anmol Sandhu</p>
+  </footer>
+  <SCRIPT>
+    function toggleForm(type) {
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+
+  if (type === 'login') {
+    loginForm.classList.add('active');
+    registerForm.classList.remove('active');
+  } else {
+    registerForm.classList.add('active');
+    loginForm.classList.remove('active');
+  }
+}
+
+function validateRegisterForm() {
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+
+  if (!firstName || !lastName || !phone || !email) {
+    alert("Please fill out all fields.");
+    return false;
+  }
+
+  alert("Registration Successful!");
+  return true;
+}
+
+function validateLoginForm() {
+  const loginEmail = document.getElementById('loginEmail').value.trim();
+  const loginPhone = document.getElementById('loginPhone').value.trim();
+
+  if (!loginEmail || !loginPhone) {
+    alert("Please enter Email and Phone.");
+    return false;
+  }
+
+  alert("Login Successful!");
+  return true;
+}
+
+
+  </SCRIPT>
+</body>
+</html>
